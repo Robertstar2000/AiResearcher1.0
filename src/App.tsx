@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
   const handleQuerySubmit = async (query: string) => {
     if (!apiKey) {
-      setError('Please enter your OpenAI API key first.');
+      setError('Please enter your API key first.');
       return;
     }
 

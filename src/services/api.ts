@@ -52,12 +52,15 @@ Note: Do not include any other text or formatting instructions in your response.
 `.trim();
 };
 
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export const generateTitle = async (query: string, apiKey: string): Promise<string> => {
   try {
+    await delay(10000); // 10-second delay
     const response = await axios.post(
-      'https://api.openai.com/v1/chat/completions',
+      'https://api.groq.com/openai/v1/chat/completions',
       {
-        model: 'gpt-3.5-turbo',
+        model: 'mixtral-8x7b-32768',
         messages: [
           {
             role: 'system',
@@ -65,11 +68,11 @@ export const generateTitle = async (query: string, apiKey: string): Promise<stri
           },
           {
             role: 'user',
-            content: `Generate a title for a research paper about: ${query}`
+            content: `Generate a title for a scietific paper about: ${query}`
           }
         ],
-        temperature: 0.7,
-        max_tokens: 100
+        temperature: 0.6,
+        max_tokens: 6000
       },
       {
         headers: {
@@ -124,11 +127,12 @@ export const conductSectionResearch = async (
       throw new Error(`Research type configuration not found for ${researchType} in ${researchMode} mode`);
     }
 
-    const model = researchMode === 'advanced' ? 'gpt-4' : 'gpt-3.5-turbo';
+    const model = 'mixtral-8x7b-32768';
     const prompt = constructPrompt(title, section, citationStyle);
 
+    await delay(10000); // 10-second delay
     const response = await axios.post(
-      'https://api.openai.com/v1/chat/completions',
+      'https://api.groq.com/openai/v1/chat/completions',
       {
         model,
         messages: [

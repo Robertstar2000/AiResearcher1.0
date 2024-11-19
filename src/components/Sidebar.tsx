@@ -51,7 +51,7 @@ export const Sidebar: React.FC = () => {
         <section>
           <h3 className="font-medium text-gray-900">Getting Started</h3>
           <ol className="mt-2 space-y-2 text-sm text-gray-600">
-            <li>1. Enter your OpenAI API key</li>
+            <li>1. Enter your API key</li>
             <li>2. Select your research mode (Basic/Advanced)</li>
             <li>3. Choose a research type</li>
             <li>4. Select your preferred citation style</li>
