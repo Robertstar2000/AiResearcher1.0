@@ -95,6 +95,9 @@ const App: React.FC = () => {
         setCurrentSections([...results]);
       }
 
+      // Decrement credits based on research mode
+      setCredits(prevCredits => prevCredits - (researchMode === 'advanced' ? 2 : 1));
+
       const newHistoryItem = {
         id: uuidv4(),
         query: currentQuery,
@@ -176,14 +179,13 @@ const App: React.FC = () => {
                       <p className="mb-3 text-amber-700">
                         Due to extensive computational requirements:
                         <br />• Basic Research: May take several minutes to complete
-                        <br />• Advanced Research: Can take sigificent time for comprehensive analysis
+                        <br />• Advanced Research: Can take sigificent time
                       </p>
                       <h4 className="mb-2 font-semibold text-amber-800">Target Users</h4>
                       <p className="mb-3 text-amber-700">
                         This application is designed for anyone conducting research, including:
-                        <br />• Scientists and Researchers
+                        <br />• Scientists, Researchers and labortaory staff
                         <br />• Engineers and Technical Professionals
-                        <br />• Laboratory Workers
                         <br />• Research Enthusiasts and Hobbyists
                       </p>
                       <p className="text-xs text-amber-600">

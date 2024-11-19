@@ -5,9 +5,9 @@ export const Sidebar: React.FC = () => {
     <aside className="h-screen w-[30%] overflow-y-auto bg-gray-50 p-6 shadow-lg">
       <div className="space-y-6">
         <section>
-          <h2 className="text-lg font-semibold text-gray-900">About AI Researcher</h2>
+          <h2 className="text-lg font-semibold text-gray-900">esearcher</h2>
           <p className="mt-2 text-sm text-gray-600">
-            An advanced research assistant that helps generate comprehensive research papers and literature reviews using AI.
+            An advanced research assistant that helps generate comprehensive research papers literature reviews and helps design experiments using advanced AI.
           </p>
         </section>
 
@@ -41,18 +41,16 @@ export const Sidebar: React.FC = () => {
         <section>
           <h3 className="font-medium text-gray-900">Features</h3>
           <ul className="mt-2 space-y-2 text-sm text-gray-600">
-            <li>Automatic section generation based on research type</li>
+            <li>Automatic content generation using chain of thought (CoT) Tree of thought (ToT) and agentic workflow</li>
             <li>Citation management and formatting</li>
             <li>Research history tracking</li>
-            <li>Download results as markdown files</li>
-            <li>Secure API key management</li>
+            <li>Download results as .docx or markdown</li>
+            <li>No API key or other accounts requred</li>
           </ul>
         </section>
 
-        <section>
-          <h3 className="font-medium text-gray-900">Getting Started</h3>
-          <ol className="mt-2 space-y-2 text-sm text-gray-600">
-            <li>1. Enter your API key</li>
+        <section>          
+            <ol className="mt-2 space-y-2 text-sm text-gray-600">
             <li>2. Select your research mode (Basic/Advanced)</li>
             <li>3. Choose a research type</li>
             <li>4. Select your preferred citation style</li>
