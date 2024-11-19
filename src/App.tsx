@@ -31,6 +31,7 @@ const App: React.FC = () => {
   const [researchMode, setResearchMode] = useState<ResearchMode>('basic');
   const [totalSections, setTotalSections] = useState(0);
   const [showTitleEdit, setShowTitleEdit] = useState(false);
+  const [credits, setCredits] = useState(10);
 
   useEffect(() => {
     const config = getResearchTypeConfig(researchType, researchMode);
@@ -165,6 +166,9 @@ const App: React.FC = () => {
                       selectedStyle={citationStyle}
                       onChange={setCitationStyle}
                     />
+                    <div className="mt-2 text-sm text-gray-500">
+                      Credits: {credits} (Basic=1cr. Advanced=2cr.)
+                    </div>
                   </div>
                   <div className="flex-1">
                     <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm">
@@ -172,7 +176,7 @@ const App: React.FC = () => {
                       <p className="mb-3 text-amber-700">
                         Due to extensive computational requirements:
                         <br />• Basic Research: May take several minutes to complete
-                        <br />• Advanced Research: Can take hours for comprehensive analysis
+                        <br />• Advanced Research: Can take sigificent time for comprehensive analysis
                       </p>
                       <h4 className="mb-2 font-semibold text-amber-800">Target Users</h4>
                       <p className="mb-3 text-amber-700">
@@ -193,10 +197,13 @@ const App: React.FC = () => {
             )}
 
             {isLoading && (
-              <ProgressBar 
-                progress={currentSections.length} 
-                total={totalSections} 
-              />
+              <>
+                <div className="spinner mb-4"></div>
+                <ProgressBar 
+                  progress={currentSections.length} 
+                  total={totalSections} 
+                />
+              </>
             )}
           </div>
 

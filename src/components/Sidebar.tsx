@@ -23,8 +23,9 @@ export const Sidebar: React.FC = () => {
         <section>
           <h3 className="font-medium text-gray-900">Research Modes</h3>
           <ul className="mt-2 space-y-2 text-sm text-gray-600">
-            <li><strong>Basic:</strong> Clear, concise explanations suitable for post-graduate level understanding.</li>
-            <li><strong>Advanced:</strong> In-depth analysis with technical terminology and theoretical frameworks.</li>
+            <li><strong>Basic:</strong> Clear, concise explanations suitable for post-graduate level understanding. Basic costs 1 credit per report</li>
+            <li><strong>Advanced:</strong> In depth analysis with technical terminology and theoretical frameworks. Advanced costs 2 credits per report</li>
+            <li><strong>Free tier:</strong> 10 free credits are provided, enough for most projects</li>
           </ul>
         </section>
 

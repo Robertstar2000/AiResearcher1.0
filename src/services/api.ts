@@ -11,7 +11,7 @@ const formatRequirements = (requirements: string[]): string => {
   return requirements.map((req, index) => `${index + 1}. ${req}`).join('\n');
 };
 
-const constructPrompt = (title: string, section: any, citationStyle: CitationStyle): string => {
+const constructPrompt = (title: string, section: any, citationStyle: CitationStyle, credits: number): string => {
   const citationInstructions = {
     academic: "Use APA format for citations (Author, Year). Include full references at the end.",
     web: "Include URLs and access dates for web sources. List full references with titles and URLs at the end.",
@@ -29,7 +29,11 @@ Requirements:
 ${formatRequirements(section.requirements)}
 
 Citation Instructions:
-${citationInstructions[citationStyle]}
+Academic (APA/MLA style)
+Web Links (URLs with titles)
+Informal (In-text mentions)
+
+Credits: ${credits} (Displayed in 18pt font)
 
 Research Guidelines:
 1. Provide a comprehensive response addressing all requirements
@@ -64,7 +68,7 @@ export const generateTitle = async (query: string, apiKey: string): Promise<stri
         messages: [
           {
             role: 'system',
-            content: 'Generate a professional, academic title for a research paper based on the given query. The title should be concise but descriptive.'
+            content: 'Generate one professional, academic title for a research paper based on the given query, no commontary just the title. The title should be concise but descriptive.'
           },
           {
             role: 'user',
@@ -127,8 +131,9 @@ export const conductSectionResearch = async (
       throw new Error(`Research type configuration not found for ${researchType} in ${researchMode} mode`);
     }
 
-    const model = 'mixtral-8x7b-32768';
-    const prompt = constructPrompt(title, section, citationStyle);
+    const model = researchMode === 'advanced' ? 'mixtral-8x7b-32768' : 'mixtral-8x7b-32768';
+    const credits = 10; // Default credits value
+    const prompt = constructPrompt(title, section, citationStyle, credits);
 
     await delay(10000); // 10-second delay
     const response = await axios.post(
@@ -140,7 +145,7 @@ export const conductSectionResearch = async (
             role: 'system',
             content: `You are an expert research assistant specializing in ${config.title}. 
                      Provide detailed, well-structured content with appropriate citations in ${citationStyle} format. 
-                     Every paragraph must include at least one citation.
+                     use academic language. Be verbose, Every paragraph must include at least one citation.
                      Ensure all claims are supported by references.
                      Always include a numbered REFERENCES section at the end.
                      Keep the original formatting exactly as requested.`
